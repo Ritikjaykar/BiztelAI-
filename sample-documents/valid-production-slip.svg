@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620">
+  <rect width="900" height="620" fill="#f9faf7"/>
+  <rect x="40" y="40" width="820" height="540" fill="#ffffff" stroke="#1f2937" stroke-width="3"/>
+  <text x="70" y="95" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111827">Production Shift Log</text>
+  <line x1="70" y1="120" x2="830" y2="120" stroke="#9ca3af" stroke-width="2"/>
+  <text x="80" y="170" font-family="Arial, sans-serif" font-size="26" fill="#111827">Date: 2026-06-05</text>
+  <text x="480" y="170" font-family="Arial, sans-serif" font-size="26" fill="#111827">Shift: A</text>
+  <text x="80" y="230" font-family="Arial, sans-serif" font-size="26" fill="#111827">Employee No: E1042</text>
+  <text x="480" y="230" font-family="Arial, sans-serif" font-size="26" fill="#111827">Operation Code: OP-210</text>
+  <text x="80" y="290" font-family="Arial, sans-serif" font-size="26" fill="#111827">Machine No: M-07</text>
+  <text x="480" y="290" font-family="Arial, sans-serif" font-size="26" fill="#111827">Work Order: WO-24091</text>
+  <text x="80" y="350" font-family="Arial, sans-serif" font-size="26" fill="#111827">Quantity Produced: 480</text>
+  <text x="480" y="350" font-family="Arial, sans-serif" font-size="26" fill="#111827">Time Taken: 420 minutes</text>
+  <text x="80" y="430" font-family="Arial, sans-serif" font-size="24" fill="#111827">Remarks: Normal production run</text>
+  <text x="80" y="520" font-family="Arial, sans-serif" font-size="18" fill="#6b7280">Sample file for BiztelAI OpsFlow testing</text>
+</svg>

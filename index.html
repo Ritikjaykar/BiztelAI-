@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BiztelAI OpsFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">B</div>
+          <div>
+            <strong>BiztelAI OpsFlow</strong>
+            <span>Document intelligence</span>
+          </div>
+        </div>
+        <nav aria-label="Primary">
+          <button class="nav-item active" data-view="workspace">Workspace</button>
+          <button class="nav-item" data-view="history">History</button>
+          <button class="nav-item" data-view="analytics">Analytics</button>
+        </nav>
+        <div class="sidebar-note">
+          <span class="status-dot"></span>
+          Browser OCR enabled when Tesseract CDN is available. Demo fallback is always available.
+        </div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">AI-powered workflow automation</p>
+            <h1>Convert operational documents into reviewable records</h1>
+          </div>
+          <div class="topbar-actions">
+            <button id="reset-data" class="secondary">Reset data</button>
+            <button id="seed-demo" class="secondary">Load demo records</button>
+            <button id="export-json" class="primary">Export JSON</button>
+          </div>
+        </header>
+
+        <section id="workspace" class="view active">
+          <div class="workflow-grid">
+            <section class="panel upload-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Upload</h2>
+                  <p>Images and PDFs are previewed, processed, and saved locally.</p>
+                </div>
+              </div>
+              <label id="dropzone" class="dropzone" for="file-input">
+                <input id="file-input" type="file" accept="image/*,.pdf" multiple />
+                <span class="upload-icon">+</span>
+                <strong>Drop documents or choose files</strong>
+                <small>Handwritten production slips, shift logs, work orders</small>
+              </label>
+              <div id="upload-list" class="upload-list"></div>
+            </section>
+
+            <section class="panel preview-panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>Document Preview</h2>
+                  <p id="preview-caption">Select or upload a document to begin.</p>
+                </div>
+                <span id="ocr-state" class="pill muted">Idle</span>
+              </div>
+              <div id="preview-frame" class="preview-frame">
+                <div class="empty-state">No document selected</div>
+              </div>
+            </section>
+          </div>
+
+          <section class="panel review-panel">
+            <div class="panel-heading">
+              <div>
+                <h2>Review Extracted Record</h2>
+                <p>Low-confidence and invalid fields are flagged for manual correction.</p>
+              </div>
+              <div class="review-actions">
+                <button id="rerun-extraction" class="secondary" disabled>Re-run extraction</button>
+                <button id="save-record" class="primary" disabled>Save reviewed record</button>
+              </div>
+            </div>
+            <div id="review-form" class="review-form"></div>
+            <div id="validation-summary" class="validation-summary"></div>
+          </section>
+        </section>
+
+        <section id="history" class="view">
+          <section class="panel">
+            <div class="panel-heading history-heading">
+              <div>
+                <h2>Search & History</h2>
+                <p>Open previous uploads, filter reviewed records, and inspect exceptions.</p>
+              </div>
+              <div class="filters">
+                <input id="search-input" type="search" placeholder="Search work order, machine, employee..." />
+                <select id="status-filter">
+                  <option value="all">All statuses</option>
+                  <option value="valid">Valid</option>
+                  <option value="review">Needs review</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Document</th>
+                    <th>Date</th>
+                    <th>Shift</th>
+                    <th>Machine</th>
+                    <th>Work Order</th>
+                    <th>Qty</th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="history-table"></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="analytics" class="view">
+          <div class="metric-grid">
+            <div class="metric"><span>Total uploads</span><strong id="metric-uploads">0</strong></div>
+            <div class="metric"><span>Reviewed records</span><strong id="metric-reviewed">0</strong></div>
+            <div class="metric"><span>Validation failures</span><strong id="metric-failures">0</strong></div>
+            <div class="metric"><span>Total qty produced</span><strong id="metric-quantity">0</strong></div>
+            <div class="metric"><span>Total hours logged</span><strong id="metric-hours">0.0</strong></div>
+          </div>
+          <div class="analytics-grid">
+            <section class="panel">
+              <h2>Shift-wise Qty Summary</h2>
+              <div id="shift-chart" class="bar-chart"></div>
+            </section>
+            <section class="panel">
+              <h2>Machine-wise Qty Summary</h2>
+              <div id="machine-chart" class="bar-chart"></div>
+            </section>
+            <section class="panel">
+              <h2>Employee-wise Qty Summary</h2>
+              <div id="emp-chart" class="bar-chart"></div>
+            </section>
+            <section class="panel wide">
+              <h2>Exception Queue</h2>
+              <div id="exception-list" class="exception-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
